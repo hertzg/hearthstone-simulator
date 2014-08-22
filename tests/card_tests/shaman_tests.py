@@ -1,10 +1,12 @@
 import random
 import unittest
-from tests.testing_agents import *
+
+from tests.agents.testing_agents import MinionPlayingAgent, MinionAttackingAgent, SpellTestingAgent, \
+    PredictableAgentWithoutHeroPower
 from tests.testing_utils import generate_game_for
-from hsgame.cards import *
-from hsgame.constants import MINION_TYPE
-from hsgame.agents.basic_agents import PredictableBot
+from hearthbreaker.cards import *
+from hearthbreaker.constants import MINION_TYPE
+from hearthbreaker.agents.basic_agents import PredictableBot, DoNothingBot
 
 
 class TestShaman(unittest.TestCase):
@@ -360,7 +362,7 @@ class TestShaman(unittest.TestCase):
         self.assertEqual(0, game.players[0].minions[0].calculate_attack())
         self.assertEqual(1, game.players[0].minions[0].health)
         self.assertEqual("Frog", game.players[0].minions[0].card.name)
-        self.assertEqual(MINION_TYPE.BEAST, game.players[0].minions[0].minion_type)
+        self.assertEqual(MINION_TYPE.BEAST, game.players[0].minions[0].card.minion_type)
 
     def test_LavaBurst(self):
         game = generate_game_for(LavaBurst, StonetuskBoar, SpellTestingAgent, DoNothingBot)
